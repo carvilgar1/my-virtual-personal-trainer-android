@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mi Entrenador Personal Digital</string>
+    <string name="welcome_title">!Bienvenido/a!</string>
+    <string name="welcome_sing_in">¿Ya tienes una cuenta?</string>
+    <string name="welcome_sign_in_p">¡Retoma tu entrenamiento ahora mismo!</string>
+    <string name="sign_in">Ingresar</string>
+    <string name="sing_up">Regístrate</string>
+    <string name="welcome_sign_up_p">¡Comienza a entrenar ahora mismo!</string>
+    <string name="welcome_sing_up">¿Aún no tienes cuenta?</string>
+    <string name="pet1_text">¡Hola! Soy Volt, el entrenador personal más inteligente de la Tierra</string>
+</resources>

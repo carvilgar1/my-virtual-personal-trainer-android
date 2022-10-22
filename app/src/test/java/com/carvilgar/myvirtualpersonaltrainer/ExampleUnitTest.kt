@@ -1,4 +1,4 @@
-package com.types.myvirtualpersonaltrainer
+package com.carvilgar.myvirtualpersonaltrainer
 
 import org.junit.Test
 

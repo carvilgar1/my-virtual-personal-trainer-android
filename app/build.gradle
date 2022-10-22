@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.types.myvirtualpersonaltrainer'
+    namespace 'com.carvilgar.myvirtualpersonaltrainer'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.types.myvirtualpersonaltrainer"
+        applicationId "com.carvilgar.myvirtualpersonaltrainer"
         minSdk 21
         targetSdk 32
         versionCode 1
