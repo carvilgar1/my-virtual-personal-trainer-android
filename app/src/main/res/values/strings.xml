@@ -10,4 +10,14 @@
     <string name="welcome_sing_up">Don\'t have an account yet?</string>
     <string name="welcome_sign_up_p">Start training right now!</string>
     <string name="pet1_text">" Hello! I'm Volt, the smartest personal trainer on Earth"</string>
+
+    <!-- Strings used for sign up layout -->
+    <string name="sign_in_title">Sign in now!</string>
+    <string name="sign_up_email">Email</string>
+    <string name="sign_up_pass">Password</string>
+    <string name="sign_in_p">If you prefer, you can also log in with the following services</string>
+    <string name="sign_in_google">Sign in with Google</string>
+
+    <!-- Strings for image description -->
+    <string name="logo_description" translatable="false">App pet and title</string>
 </resources>
