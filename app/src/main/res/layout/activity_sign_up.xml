@@ -10,9 +10,7 @@
         android:id="@+id/app_logo"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/logo_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,103 +21,180 @@
         android:id="@+id/sign_in_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="@string/sign_up_title"
-        android:textColor="@color/text_color"
+        android:textColor="@color/blue_1"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/app_logo" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="0dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/form_border"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_title">
+        app:layout_constraintTop_toTopOf="@+id/app_logo">
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:hint="@string/user_name"
-            android:inputType="textPersonName"
-            android:text="@string/user_name" />
-
-        <EditText
-            android:id="@+id/editTextTextPersonName2"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_name_sign_up"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/user_surname" />
+            android:text="@string/user_name">
 
-        <EditText
-            android:id="@+id/editTextDate2"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_name_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:hint="@string/user_name"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_surname_sign_up"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
-            android:hint="@string/user_birth_date"
-            android:inputType="date"
-            android:text="@string/user_birth_date" />
+            android:inputType="textPersonName"
+            android:text="@string/user_name">
 
-        <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_surname_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:hint="@string/user_surname"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_email_sign_up"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
-            android:hint="@string/user_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPersonName"
+            android:text="@string/user_name">
 
-        <EditText
-            android:id="@+id/editTextTextPassword"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:hint="@string/user_email"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_birth_date_sign_up"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
-            android:hint="@string/user_pass"
-            android:inputType="textPassword" />
+            android:inputType="textPersonName"
+            android:text="@string/user_name">
 
-        <EditText
-            android:id="@+id/editTextTextPassword2"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_birth_date_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:hint="@string/user_birth_date"
+                android:inputType="date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_pass_sign_up"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
-            android:hint="@string/user_cpass"
-            android:inputType="textPassword"
-            android:textColorHint="@color/text_color" />
+            android:inputType="textPersonName"
+            android:text="@string/user_name">
 
-        <EditText
-            android:id="@+id/editTextNumberDecimal"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_pass_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:hint="@string/user_pass"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_cpass_sign_up"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
-            android:hint="@string/user_height"
-            android:inputType="numberDecimal" />
+            android:inputType="textPersonName"
+            android:text="@string/user_name">
 
-        <EditText
-            android:id="@+id/editTextNumberDecimal2"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_cpass_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:hint="@string/user_pass"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_weight_sign_up"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
-            android:hint="@string/user_weight"
-            android:inputType="numberDecimal" />
+            android:inputType="textPersonName"
+            android:text="@string/user_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_weight_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:hint="@string/user_weight"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_height_sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/user_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_height_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:hint="@string/user_height"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/text_color"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/button_style"
         android:text="@string/sing_up"
         android:textColor="@color/white"
         android:textSize="20sp"

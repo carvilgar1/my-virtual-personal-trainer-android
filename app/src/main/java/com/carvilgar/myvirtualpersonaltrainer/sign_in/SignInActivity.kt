@@ -20,8 +20,8 @@ class SignInActivity : AppCompatActivity() {
 
         val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
 
-        val email = findViewById<EditText>(R.id.et_email).text.toString()
-        val password = findViewById<EditText>(R.id.et_password).text.toString()
+        val email = findViewById<EditText>(R.id.et_email_sign_in).text.toString()
+        val password = findViewById<EditText>(R.id.et_pass_sign_in).text.toString()
 
         val signInInstance = AppAuthenticationManager(email, password)
 

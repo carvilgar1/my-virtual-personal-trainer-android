@@ -32,4 +32,5 @@
 
     <!-- Strings for image description -->
     <string name="logo_description" translatable="false">App pet and title</string>
+    <string name="pet_description" translatable="false">App pet</string>
 </resources>
