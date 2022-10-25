@@ -9,9 +9,17 @@
     <string name="welcome_sign_up_p">¡Comienza a entrenar ahora mismo!</string>
     <string name="welcome_sing_up">¿Aún no tienes cuenta?</string>
     <string name="pet1_text">¡Hola! Soy Volt, el entrenador personal más inteligente de la Tierra</string>
-    <string name="sign_up_email">Correo electrónico</string>
-    <string name="sign_up_pass">Contraseña</string>
+    <string name="user_email">Correo electrónico</string>
+    <string name="user_pass">Contraseña</string>
     <string name="sign_in_title">¡Inicia sesión ahora!</string>
     <string name="sign_in_p">Si lo prefieres, también puedes iniciar sesión con los siguientes servicios</string>
     <string name="sign_in_google">Ingresar con Google</string>
+    <string name="sign_up_title">¡Regístrate ahora mismo!</string>
+    <string name="user_name">Nombre</string>
+    <string name="user_surname">Apellidos</string>
+    <string name="user_weight">Peso</string>
+    <string name="user_height">Altura</string>
+    <string name="user_cpass">Confirmar contraseña</string>
+    <string name="user_birth_date">Año de nacimiento</string>
+    <string name="user_activity">Nivel de actividad</string>
 </resources>

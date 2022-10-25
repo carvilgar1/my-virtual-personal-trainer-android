@@ -3,6 +3,17 @@
     <string name="sing_up">Sign up</string>
     <string name="sign_in">Sign in</string>
 
+    <!-- Strings used for user params -->
+    <string name="user_name">Name</string>
+    <string name="user_surname">Surname</string>
+    <string name="user_birth_date">Birth date</string>
+    <string name="user_email">Email</string>
+    <string name="user_pass">Password</string>
+    <string name="user_cpass">Confirm password</string>
+    <string name="user_weight">Weight</string>
+    <string name="user_height">Height</string>
+    <string name="user_activity">Activity level</string>
+
     <!-- Strings used for welcome layout -->
     <string name="welcome_title">Welcome!</string>
     <string name="welcome_sing_in">Do you already have an account?</string>
@@ -13,10 +24,11 @@
 
     <!-- Strings used for sign up layout -->
     <string name="sign_in_title">Sign in now!</string>
-    <string name="sign_up_email">Email</string>
-    <string name="sign_up_pass">Password</string>
     <string name="sign_in_p">If you prefer, you can also log in with the following services</string>
     <string name="sign_in_google">Sign in with Google</string>
+
+    <!-- Strings used for sign up layout -->
+    <string name="sign_up_title">Sign up now!</string>
 
     <!-- Strings for image description -->
     <string name="logo_description" translatable="false">App pet and title</string>
