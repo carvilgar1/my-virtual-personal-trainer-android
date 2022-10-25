@@ -9,7 +9,7 @@ enum class CheckLoginStatus {
 
 class AppAuthenticationManager(
     var email: String?,
-    var password: String,
+    var password: String?,
 ){
     private val emailRegex: Regex = Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}\$")
     private val passwordRegex: Regex = Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}\$")

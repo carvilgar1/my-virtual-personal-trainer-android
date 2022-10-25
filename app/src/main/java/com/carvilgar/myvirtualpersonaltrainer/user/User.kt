@@ -10,13 +10,19 @@ enum class ActivityLevel {
     EXTRA_ACTIVE
 }
 
-class User (
-    val id: Long,
+class User(
+    val id: Long?,
     val name: String,
     val surName: String,
     val birthDate: Date,
-    val authenticationManager: AppAuthenticationManager?,
+    var authenticationManager: AppAuthenticationManager?,
     var height: Double,
     var weight: Double,
     var activityLevel: ActivityLevel
-    )
+){
+    public constructor(name: String, surName: String, birthDate: Date,
+                       email: String, password: String, height: Double,
+                       weight: Double, activityLevel: ActivityLevel) :
+            this(null, name, surName, birthDate, AppAuthenticationManager(email, password),
+                height, weight, activityLevel)
+}
