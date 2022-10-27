@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import com.carvilgar.myvirtualpersonaltrainer.R
-import com.carvilgar.myvirtualpersonaltrainer.user.AppAuthenticationManager
-import com.carvilgar.myvirtualpersonaltrainer.user.CheckLoginStatus
+import com.carvilgar.myvirtualpersonaltrainer.user.AppAuthenticationManagerValidator
 
 
 class SignInActivity : AppCompatActivity() {
@@ -17,33 +15,42 @@ class SignInActivity : AppCompatActivity() {
     }
 
     fun signIn(view: View) {
+        val email = findViewById<EditText>(R.id.et_email_sign_in)
+        val password = findViewById<EditText>(R.id.et_pass_sign_in)
 
-        val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
+        if (signUpInputTextValidation(email, password)) setContentView(R.layout.index_layout)
+    }
 
-        val email = findViewById<EditText>(R.id.et_email_sign_in).text.toString()
-        val password = findViewById<EditText>(R.id.et_pass_sign_in).text.toString()
+    private fun signUpInputTextValidation(emailEditText: EditText, passwordEditText: EditText) : Boolean {
+        return emailEditTextIsValid(emailEditText).and(passwordEditTextIsValid(passwordEditText))
+    }
 
-        val signInInstance = AppAuthenticationManager(email, password)
+    private fun emailEditTextIsValid(emailEditText: EditText) : Boolean {
+        val email = emailEditText.text.toString()
+        return if (AppAuthenticationManagerValidator().checkEmailIsNotEmptyOrNull(email)
+                    && AppAuthenticationManagerValidator().checkEmailIsValid(email)) {
+            true
+        } else if (AppAuthenticationManagerValidator().checkEmailIsNotEmptyOrNull(email)){
+            emailEditText.error = resources.getString(R.string.invalid_format_email)
+            false
+        }else {
+            emailEditText.error = resources.getString(R.string.invalid_email)
+            false
+        }
+    }
 
-        when (signInInstance.trySignIn()) {
-            CheckLoginStatus.OK -> {
-                setContentView(R.layout.index_layout)
-            }
-            CheckLoginStatus.EMAIL_IS_NOT_VALID -> {
-                alertDialog.setTitle("Login")
-                alertDialog.setMessage("Email is not valid")
-                alertDialog.show()
-            }
-            CheckLoginStatus.PASSWORD_IS_NOT_VALID -> {
-                alertDialog.setTitle("Login")
-                alertDialog.setMessage("Password is not valid")
-                alertDialog.show()
-            }
-            CheckLoginStatus.PASSWORD_AND_EMAIL_ARE_NOT_VALID -> {
-                alertDialog.setTitle("Login")
-                alertDialog.setMessage("Password and email are not valid")
-                alertDialog.show()
-            }
+    private fun passwordEditTextIsValid(passwordEditText: EditText) : Boolean {
+        val password = passwordEditText.text.toString()
+        return if (AppAuthenticationManagerValidator().checkPassIsNotEmptyOrNull(password)
+                    && AppAuthenticationManagerValidator().checkPasswordIsValid(password)) {
+            true
+        } else if (AppAuthenticationManagerValidator().checkPassIsNotEmptyOrNull(password)) {
+            passwordEditText.error = resources.getString(R.string.weak_pass)
+            false
+        } else {
+            passwordEditText.error = resources.getString(R.string.invalid_pass)
+            false
         }
     }
 }
+
