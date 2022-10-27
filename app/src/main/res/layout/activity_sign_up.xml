@@ -145,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/transparent"
-                android:hint="@string/user_pass"
+                android:hint="@string/user_cpass"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
