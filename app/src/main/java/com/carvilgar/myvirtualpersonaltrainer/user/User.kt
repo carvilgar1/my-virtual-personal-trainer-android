@@ -1,5 +1,6 @@
 package com.carvilgar.myvirtualpersonaltrainer.user
 
+import com.carvilgar.myvirtualpersonaltrainer.sign_in.AppAuthenticationManager
 import java.util.Date
 
 class User(

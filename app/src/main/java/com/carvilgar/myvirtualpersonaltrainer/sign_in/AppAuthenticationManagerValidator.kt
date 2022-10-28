@@ -1,6 +1,7 @@
-package com.carvilgar.myvirtualpersonaltrainer.user
+package com.carvilgar.myvirtualpersonaltrainer.sign_in
 
 import com.carvilgar.validation.IValidator
+import com.carvilgar.validation.ValidationError
 
 class AppAuthenticationManagerValidator : IValidator {
     private val emailRegex: Regex = Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}\$")
@@ -22,32 +23,36 @@ class AppAuthenticationManagerValidator : IValidator {
         return !email.isNullOrEmpty()
     }
 
-    private fun emailEditTextIsValid(email: String) : Boolean {
+    private fun emailEditTextIsValid(email: String, errors: ValidationError<Any?>) : Boolean {
         return if (AppAuthenticationManagerValidator().checkEmailIsNotEmptyOrNull(email)
             && AppAuthenticationManagerValidator().checkEmailIsValid(email)) {
             true
         } else if (AppAuthenticationManagerValidator().checkEmailIsNotEmptyOrNull(email)){
+            errors.addError("password", LoginErrors.EMPTY_FIELD)
             false
         }else {
+            errors.addError("password", LoginErrors.NOT_VALID_FIELD)
             false
         }
     }
 
-    private fun passwordEditTextIsValid(password: String) : Boolean {
+    private fun passwordEditTextIsValid(password: String, errors: ValidationError<Any?>) : Boolean {
         return if (AppAuthenticationManagerValidator().checkPassIsNotEmptyOrNull(password)
             && AppAuthenticationManagerValidator().checkPasswordIsValid(password)) {
             true
         } else if (AppAuthenticationManagerValidator().checkPassIsNotEmptyOrNull(password)) {
+            errors.addError("password", LoginErrors.EMPTY_FIELD)
             false
         } else {
+            errors.addError("password", LoginErrors.NOT_VALID_FIELD)
             false
         }
     }
 
-    override fun <T> validate(obj: T): Boolean {
+    override fun <T> validate(obj: T, errors: ValidationError<Any?>): Boolean {
         val appAuthenticationManager = obj as AppAuthenticationManager
-        return (emailEditTextIsValid(appAuthenticationManager.email)
-                && passwordEditTextIsValid(appAuthenticationManager.password))
+        return (emailEditTextIsValid(appAuthenticationManager.email, errors)
+                && passwordEditTextIsValid(appAuthenticationManager.password, errors))
     }
 
 }
