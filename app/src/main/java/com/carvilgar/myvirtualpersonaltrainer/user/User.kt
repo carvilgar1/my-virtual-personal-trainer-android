@@ -19,4 +19,23 @@ class User(
     fun setBirthDate(birthDate: String){
         this.birthDate = dateFormatter.parse(birthDate)
     }
+//    constructor(
+//        name: String,
+//        surName: String,
+//        birthDate: String,
+//        email: String,
+//        password: String,
+//        height: String,
+//        weight: String,
+//        activityLevel: String
+//    ) : this(
+//        null,
+//        name,
+//        surName,
+//        dateFormatter.parse(birthDate),
+//        AppAuthenticationManager(email, password),
+//        height.toFloat(),
+//        weight.toFloat(),
+//        ActivityLevel.valueOf(activityLevel)
+//    )
 }

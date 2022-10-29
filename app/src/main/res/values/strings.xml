@@ -26,6 +26,15 @@
     <string name="weak_pass">Password must contain: At least 8 characters, upper case and lower case, numbers and at least one sign</string>
     <string name="invalid_email">Email cannot be empty</string>
     <string name="invalid_format_email">The email format isn\'t correct</string>
+    <string name="invalid_name">Name cannot be empty</string>
+    <string name="invalid_surname">Surname cannot be empty</string>
+    <string name="invalid_birth_date">Birth date cannot be empty</string>
+    <string name="invalid_format_birth_date">Birth date must be formatted as dd/mm/yyyy</string>
+    <string name="pass_dont_match">Passwords don\'t match</string>
+    <string name="invalid_height">Height cannot be empty</string>
+    <string name="invalid_format_height">Height must be a decimal between 0 and 3 meters</string>
+    <string name="invalid_weight">Weight cannot be empty</string>
+    <string name="invalid_format_weight">Weight must be a decimal between 0 and 300 kg</string>
 
 
     <!-- Strings used for welcome layout -->
