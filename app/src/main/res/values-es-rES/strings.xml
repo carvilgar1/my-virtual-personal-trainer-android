@@ -26,4 +26,18 @@
     <string name="weak_pass">La contraseña debe contener: Al menos 8 caracteres, mayúsculas y minúsculas, números y al menos un signo</string>
     <string name="invalid_email">El correo electrónico no puede estar vacío</string>
     <string name="invalid_format_email">El formato del correo electrónico no es correcto.</string>
+    <string name="sedentary">Sedentario</string>
+    <string name="lightly_active">Ligeramente Activo</string>
+    <string name="very_active">Muy Activo</string>
+    <string name="moderately_active">Moderadamente Activo</string>
+    <string name="extra_active">Extremadamente Activo</string>
+    <string name="invalid_name">El nombre no puede estar vacío</string>
+    <string name="invalid_surname">El apellido no puede estar vacío</string>
+    <string name="invalid_birth_date">La fecha de nacimiento no puede estar vacía</string>
+    <string name="invalid_format_birth_date">La fecha de nacimiento debe tener el formato dd/mm/aaaa</string>
+    <string name="pass_dont_match">Las contraseñas no coinciden</string>
+    <string name="invalid_height">La altura no puede estar vacía</string>
+    <string name="invalid_format_height">La altura debe ser un decimal entre 0 y 3 metros</string>
+    <string name="invalid_weight">El peso no puede estar vacío</string>
+    <string name="invalid_format_weight">El peso debe ser un decimal entre 0 y 300 kg.</string>
 </resources>
