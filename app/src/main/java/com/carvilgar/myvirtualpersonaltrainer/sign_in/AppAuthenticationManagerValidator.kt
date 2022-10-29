@@ -4,7 +4,7 @@ import com.carvilgar.validation.IValidator
 import com.carvilgar.validation.ValidationError
 
 class AppAuthenticationManagerValidator : IValidator {
-    private val emailRegex: Regex = Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}\$")
+    private val emailRegex: Regex = Regex("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}\$")
     private val passwordRegex: Regex = Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}\$")
 
     private fun checkEmailIsValid(email: String): Boolean {
@@ -16,11 +16,11 @@ class AppAuthenticationManagerValidator : IValidator {
     }
 
     private fun checkPassIsNotEmptyOrNull(password: String): Boolean {
-        return !password.isNullOrEmpty()
+        return password.isNotEmpty()
     }
 
     private fun checkEmailIsNotEmptyOrNull(email: String): Boolean {
-        return !email.isNullOrEmpty()
+        return email.isNotEmpty()
     }
 
     private fun emailEditTextIsValid(email: String, errors: ValidationError<Any?>) : Boolean {
@@ -28,10 +28,10 @@ class AppAuthenticationManagerValidator : IValidator {
             && AppAuthenticationManagerValidator().checkEmailIsValid(email)) {
             true
         } else if (AppAuthenticationManagerValidator().checkEmailIsNotEmptyOrNull(email)){
-            errors.addError("password", LoginErrors.EMPTY_FIELD)
+            errors.addError("password", SignInErrors.EMPTY_FIELD)
             false
         }else {
-            errors.addError("password", LoginErrors.NOT_VALID_FIELD)
+            errors.addError("password", SignInErrors.NOT_VALID_FIELD)
             false
         }
     }
@@ -41,10 +41,10 @@ class AppAuthenticationManagerValidator : IValidator {
             && AppAuthenticationManagerValidator().checkPasswordIsValid(password)) {
             true
         } else if (AppAuthenticationManagerValidator().checkPassIsNotEmptyOrNull(password)) {
-            errors.addError("password", LoginErrors.EMPTY_FIELD)
+            errors.addError("password", SignInErrors.EMPTY_FIELD)
             false
         } else {
-            errors.addError("password", LoginErrors.NOT_VALID_FIELD)
+            errors.addError("password", SignInErrors.NOT_VALID_FIELD)
             false
         }
     }

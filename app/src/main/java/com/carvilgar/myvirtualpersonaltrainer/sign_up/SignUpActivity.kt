@@ -5,17 +5,16 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import com.carvilgar.myvirtualpersonaltrainer.R
-import com.carvilgar.myvirtualpersonaltrainer.user.ActivityLevel
 
 
 class SignUpActivity : AppCompatActivity() {
-    val values = arrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        inizializateSpinner()
+        initializeSpinner()
 
     }
 
@@ -31,9 +30,10 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    private fun inizializateSpinner() {
+    private fun initializeSpinner() {
         val spinner = findViewById<Spinner>(R.id.spinner_activity_level_sign_up)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, ActivityLevel.values())
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,
+                        resources.getStringArray(R.array.activity_level_options))
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 

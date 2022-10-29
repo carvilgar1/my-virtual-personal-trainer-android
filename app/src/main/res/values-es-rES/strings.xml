@@ -26,4 +26,9 @@
     <string name="weak_pass">La contraseña debe contener: Al menos 8 caracteres, mayúsculas y minúsculas, números y al menos un signo</string>
     <string name="invalid_email">El correo electrónico no puede estar vacío</string>
     <string name="invalid_format_email">El formato del correo electrónico no es correcto.</string>
+    <string name="sedentary">Sedentario</string>
+    <string name="lightly_active">Ligeramente Activo</string>
+    <string name="very_active">Muy Activo</string>
+    <string name="moderately_active">Moderadamente Activo</string>
+    <string name="extra_active">Extremadamente Activo</string>
 </resources>

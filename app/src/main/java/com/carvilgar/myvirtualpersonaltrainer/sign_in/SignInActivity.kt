@@ -26,10 +26,10 @@ class SignInActivity : AppCompatActivity() {
             //Email errors
             if (errors.getErrors("email") != null) {
                 when (errors.getErrors("email")) {
-                    LoginErrors.EMPTY_FIELD -> {
+                    SignInErrors.EMPTY_FIELD -> {
                         emailEditText.error = resources.getString(R.string.invalid_email)
                     }
-                    LoginErrors.NOT_VALID_FIELD-> {
+                    SignInErrors.NOT_VALID_FIELD-> {
                         emailEditText.error = resources.getString(R.string.invalid_format_email)
                     }
                 }
@@ -38,10 +38,10 @@ class SignInActivity : AppCompatActivity() {
             //Password errors
             if (errors.getErrors("password") != null) {
                 when (errors.getErrors("password")) {
-                    LoginErrors.EMPTY_FIELD -> {
+                    SignInErrors.EMPTY_FIELD -> {
                         passwordEditText.error = resources.getString(R.string.invalid_pass)
                     }
-                    LoginErrors.NOT_VALID_FIELD-> {
+                    SignInErrors.NOT_VALID_FIELD-> {
                         passwordEditText.error = resources.getString(R.string.weak_pass)
                     }
                 }
