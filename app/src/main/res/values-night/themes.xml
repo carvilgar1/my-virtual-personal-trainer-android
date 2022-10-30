@@ -1,10 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.MyVirtualPersonalTrainer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_1</item>
-        <item name="colorPrimaryVariant">@color/blue_3</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="android:textColorPrimary">@color/inverted_blue_1</item>
+        <item name="android:textColorSecondary">@color/blue_1</item>
+        <item name="colorPrimary">@color/inverted_blue_1</item>
+        <item name="colorPrimaryVariant">@color/inverted_blue_1</item>
+        <item name="colorOnPrimary">@color/inverted_blue_1</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/gray_1</item>
         <item name="colorSecondaryVariant">@color/gray_1</item>

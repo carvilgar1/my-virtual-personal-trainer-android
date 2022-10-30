@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/sign_in_title"
-            android:textColor="@color/blue_1"
+            android:textColor = "?android:textColorPrimary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -47,7 +47,7 @@
 
             android:gravity="center"
             android:text="@string/welcome_sing_in"
-            android:textColor="@color/blue_1"
+            android:textColor = "?android:textColorPrimary"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -59,7 +59,7 @@
 
             android:gravity="center"
             android:text="@string/welcome_sign_in_p"
-            android:textColor="@color/blue_1"
+            android:textColor = "?android:textColorPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -71,6 +71,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/button_style"
+            android:textColor = "?android:textColorSecondary"
             android:text="@string/sign_in"
             android:textSize="20sp" />
 
@@ -82,7 +83,7 @@
 
             android:gravity="center"
             android:text="@string/welcome_sing_up"
-            android:textColor="@color/blue_1"
+            android:textColor = "?android:textColorPrimary"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -94,7 +95,7 @@
 
             android:gravity="center"
             android:text="@string/welcome_sign_up_p"
-            android:textColor="@color/blue_1"
+            android:textColor = "?android:textColorPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -106,6 +107,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/button_style"
+            android:textColor = "?android:textColorSecondary"
             android:text="@string/sing_up"
             android:textSize="20sp" />
     </LinearLayout>

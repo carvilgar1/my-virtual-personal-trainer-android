@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/sign_in_title"
-        android:textColor="@color/blue_1"
+        android:textColor = "?android:textColorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -83,16 +83,15 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_sign_up"
+        android:id="@+id/btn_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/button_style"
-        android:onClick="signIn"
         android:text="@string/sign_in"
-        android:textColor="@color/white"
+        android:textColor = "?android:textColorSecondary"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,10 +105,10 @@
 
         android:gravity="center"
         android:text="@string/sign_in_p"
-        android:textColor="@color/blue_1"
+        android:textColor = "?android:textColorPrimary"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sign_up" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_sign_in" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btn_sign_in_google"

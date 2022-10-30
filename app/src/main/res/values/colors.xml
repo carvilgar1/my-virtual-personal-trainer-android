@@ -3,8 +3,9 @@
     <color name="blue_1">#121C46</color>
     <color name="blue_2">#182D6C</color>
     <color name="blue_3">#183E8A</color>
-    <color name="gray_1">#666B73</color>
-    <color name="gray_2">#7E8693</color>
+    <color name="gray_1">#5E6570</color>
+    <color name="gray_2">#737D8E</color>
+    <color name="gray_3">#A3ABB8</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="inverted_blue_1">#f5f1e1</color>
