@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.carvilgar.myvirtualpersonaltrainer.R
+import com.carvilgar.myvirtualpersonaltrainer.authentication.AuthenticationErrors
 import com.carvilgar.validation.ValidationError
 
 
@@ -32,10 +33,10 @@ class SignInActivity : AppCompatActivity() {
             //Email errors
             if (errors.getErrors("email") != null) {
                 when (errors.getErrors("email")) {
-                    SignInErrors.EMPTY_FIELD -> {
+                    AuthenticationErrors.EMPTY_FIELD -> {
                         emailEditText.error = resources.getString(R.string.invalid_email)
                     }
-                    SignInErrors.NOT_VALID_FIELD-> {
+                    AuthenticationErrors.NOT_VALID_FIELD-> {
                         emailEditText.error = resources.getString(R.string.invalid_format_email)
                     }
                 }
@@ -44,10 +45,10 @@ class SignInActivity : AppCompatActivity() {
             //Password errors
             if (errors.getErrors("password") != null) {
                 when (errors.getErrors("password")) {
-                    SignInErrors.EMPTY_FIELD -> {
+                    AuthenticationErrors.EMPTY_FIELD -> {
                         passwordEditText.error = resources.getString(R.string.invalid_pass)
                     }
-                    SignInErrors.NOT_VALID_FIELD-> {
+                    AuthenticationErrors.NOT_VALID_FIELD-> {
                         passwordEditText.error = resources.getString(R.string.weak_pass)
                     }
                 }

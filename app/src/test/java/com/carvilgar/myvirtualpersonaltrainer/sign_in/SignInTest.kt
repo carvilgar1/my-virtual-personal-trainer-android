@@ -1,5 +1,6 @@
 package com.carvilgar.myvirtualpersonaltrainer.sign_in
 
+import com.carvilgar.myvirtualpersonaltrainer.authentication.SignInLogic
 import com.carvilgar.validation.ValidationError
 import org.junit.Assert.*
 import org.junit.Test

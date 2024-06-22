@@ -1,7 +1,6 @@
-package com.carvilgar.myvirtualpersonaltrainer.sign_up
+package com.carvilgar.myvirtualpersonaltrainer.user
 
-import com.carvilgar.myvirtualpersonaltrainer.sign_in.AppAuthenticationManager
-import com.carvilgar.myvirtualpersonaltrainer.sign_in.AppAuthenticationManagerValidator
+import com.carvilgar.myvirtualpersonaltrainer.authentication.AuthenticationErrors
 import com.carvilgar.validation.IValidator
 import com.carvilgar.validation.ValidationError
 
@@ -25,21 +24,23 @@ class UserInputDataValidator : IValidator {
         return height > 0f && height < 3f
     }
 
+    private fun checkAgeIsInRange(age: Int): Boolean {
+        return age in 1..119
+    }
+
     override fun <T> validate(obj: T, errors: ValidationError<Any?>): Boolean {
         val userInputData = obj as UserInputData
         return checkUserNameIsValid(userInputData.name, errors)
                 .and(checkUserSurNameIsValid(userInputData.surName, errors))
-                .and(checkUserBirthDateIsValid(userInputData.birthDate, errors))
+                .and(checkUserAgeIsValid(userInputData.age, errors))
                 .and(checkUserHeightIsValid(userInputData.height, errors))
                 .and(checkUserWeightIsValid(userInputData.weight, errors))
-                .and(checkUserCredentialsAreValid(userInputData.credentials,
-                    userInputData.passwordConfirmation,errors))
     }
 
     private fun checkUserNameIsValid(name: String, errors: ValidationError<Any?>): Boolean {
         return if (checkParameterIsNotBlank(name)) true
         else {
-            errors.addError("name", SignUpErrors.EMPTY_FIELD)
+            errors.addError("name", AuthenticationErrors.EMPTY_FIELD)
             false
         }
     }
@@ -47,19 +48,19 @@ class UserInputDataValidator : IValidator {
     private fun checkUserSurNameIsValid(name: String, errors: ValidationError<Any?>): Boolean {
         return if (checkParameterIsNotBlank(name)) true
         else {
-            errors.addError("surName", SignUpErrors.EMPTY_FIELD)
+            errors.addError("surName", AuthenticationErrors.EMPTY_FIELD)
             false
         }
     }
 
-    private fun checkUserBirthDateIsValid(birthDate: String, errors: ValidationError<Any?>): Boolean {
-        return if (checkParameterIsNotBlank(birthDate) && checkBirthDateIsCorrect(birthDate)) {
+    private fun checkUserAgeIsValid(age: String, errors: ValidationError<Any?>): Boolean {
+        return if (checkParameterIsNotBlank(age) && age.toInt() in 1..119) {
             true
-        } else if (checkParameterIsNotBlank(birthDate)) {
-            errors.addError("birthDate", SignUpErrors.NOT_VALID_FIELD)
+        } else if (checkParameterIsNotBlank(age)) {
+            errors.addError("age", AuthenticationErrors.NOT_VALID_FIELD)
             false
         } else {
-            errors.addError("birthDate", SignUpErrors.EMPTY_FIELD)
+            errors.addError("age", AuthenticationErrors.EMPTY_FIELD)
             false
         }
     }
@@ -68,10 +69,10 @@ class UserInputDataValidator : IValidator {
         return if (checkParameterIsNotBlank(height) && checkHeightIsInRange(height.toFloat())) {
             true
         } else if (checkParameterIsNotBlank(height)) {
-            errors.addError("height", SignUpErrors.NOT_VALID_FIELD)
+            errors.addError("height", AuthenticationErrors.NOT_VALID_FIELD)
             false
         } else {
-            errors.addError("height", SignUpErrors.EMPTY_FIELD)
+            errors.addError("height", AuthenticationErrors.EMPTY_FIELD)
             false
         }
     }
@@ -80,24 +81,10 @@ class UserInputDataValidator : IValidator {
         return if (checkParameterIsNotBlank(weight) && checkWeightIsInRange(weight.toFloat())) {
             true
         } else if (checkParameterIsNotBlank(weight)) {
-            errors.addError("weight", SignUpErrors.NOT_VALID_FIELD)
+            errors.addError("weight", AuthenticationErrors.NOT_VALID_FIELD)
             false
         } else {
-            errors.addError("weight", SignUpErrors.EMPTY_FIELD)
-            false
-        }
-    }
-
-    private fun checkUserCredentialsAreValid(
-        credentials: AppAuthenticationManager, password: String,
-        errors: ValidationError<Any?>
-    ): Boolean {
-        return if (AppAuthenticationManagerValidator().validate(credentials, errors) && credentials.password == password) {
-            true
-        } else if (credentials.password != password) {
-            errors.addError("passwordConfirmation", SignUpErrors.PASSWORDS_NOT_MATCH)
-            false
-        } else {
+            errors.addError("weight", AuthenticationErrors.EMPTY_FIELD)
             false
         }
     }

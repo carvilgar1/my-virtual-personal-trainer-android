@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".sign_in.SignInActivity">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/app_logo"
@@ -22,194 +21,66 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/sign_up_title"
-        android:textColor = "?android:textColorPrimary"
+        android:text="@string/sign_in_title"
+        android:textColor="?android:textColorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintBottom_toTopOf="@+id/UserCredentialsLayout"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/UserCredentialsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_border"
+        android:background="@color/colorBackground"
+        android:gravity="center"
         android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/app_logo"
-        app:layout_constraintVertical_bias="0.6">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_name_sign_up"
+        <EditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/user_name">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Username"
+            style="@style/AppEditText" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_name_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/transparent"
-                android:hint="@string/user_name"
-                android:inputType="text"
-                android:textColorHint="@color/gray_1" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_surname_sign_up"
+        <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/user_name">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            style="@style/AppEditText" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_surname_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/transparent"
-                android:hint="@string/user_surname"
-                android:inputType="text" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_email_sign_up"
+        <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/user_name">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            style="@style/AppEditText" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/transparent"
-                android:hint="@string/user_email"
-                android:inputType="textEmailAddress" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_birth_date_sign_up"
+        <EditText
+            android:id="@+id/confirm_password"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/user_name">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            style="@style/AppEditText" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_birth_date_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/transparent"
-                android:hint="@string/user_birth_date"
-                android:inputType="date" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_pass_sign_up"
+        <Button
+            android:id="@+id/saveProfileButton"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/user_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_pass_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/transparent"
-                android:hint="@string/user_pass"
-                android:inputType="textPassword" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_cpass_sign_up"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/user_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_cpass_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/transparent"
-                android:hint="@string/user_cpass"
-                android:inputType="textPassword" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_weight_sign_up"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/user_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_weight_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/transparent"
-                android:hint="@string/user_weight"
-                android:inputType="numberDecimal" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_height_sign_up"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/user_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_height_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/transparent"
-                android:hint="@string/user_height"
-                android:inputType="numberDecimal" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Spinner
-            android:id="@+id/spinner_activity_level_sign_up"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:contentDescription="@string/moderately_active"
-            android:prompt="@string/user_activity"
-            android:spinnerMode="dialog" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Register"
+            style="@style/AppButton" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_sign_up"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/button_style"
-        android:text="@string/sing_up"
-        android:textColor = "?android:textColorSecondary"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

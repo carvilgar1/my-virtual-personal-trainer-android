@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,62 +24,87 @@
         android:textColor="?android:textColorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/UserCredentialsLayout"/>
+        app:layout_constraintBottom_toTopOf="@+id/user_data_layout"/>
 
     <LinearLayout
-        android:id="@+id/UserCredentialsLayout"
+        android:id="@+id/user_data_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:background="@color/colorBackground"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/name"
+            style="@style/AppEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Username"
-            style="@style/AppEditText" />
+            android:hint="Name" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/surname"
+            style="@style/AppEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            style="@style/AppEditText" />
+            android:hint="Surname" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/age"
+            style="@style/AppEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            style="@style/AppEditText" />
+            android:hint="Age"
+            android:inputType="number" />
 
         <EditText
-            android:id="@+id/confirm_password"
+            android:id="@+id/weight"
+            style="@style/AppEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
-            style="@style/AppEditText" />
+            android:hint="Weight"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/height"
+            style="@style/AppEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Height"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/maxHeartRate"
+            style="@style/AppEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Max Heart Rate"
+            android:inputType="numberDecimal" />
+
+        <Spinner
+            android:id="@+id/activityLevel"
+            style="@style/AppDefaultSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/spinner_default"
+            android:entries="@array/activity_level_options" />
 
         <Button
-            android:id="@+id/saveProfileButton"
+            android:id="@+id/registerButton"
+            style="@style/AppButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Register"
-            style="@style/AppButton" />
+            android:text="Save" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

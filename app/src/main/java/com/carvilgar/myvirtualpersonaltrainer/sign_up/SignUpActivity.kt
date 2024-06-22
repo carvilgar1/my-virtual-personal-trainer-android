@@ -1,125 +1,169 @@
 package com.carvilgar.myvirtualpersonaltrainer.sign_up
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.carvilgar.myvirtualpersonaltrainer.R
+import com.carvilgar.myvirtualpersonaltrainer.authentication.*
+import com.carvilgar.myvirtualpersonaltrainer.user.UserDataActivity
 import com.carvilgar.validation.ValidationError
-
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import okhttp3.*
+import java.io.IOException
 
 class SignUpActivity : AppCompatActivity() {
+    private var authenticationManager = AuthenticationManager()
+    private val userCredentialsValidator by lazy { UserCredentialsValidator() }
+    private val usernameEditText by lazy { findViewById<EditText>(R.id.username) }
+    private val emailEditText by lazy { findViewById<EditText>(R.id.email) }
+    private val passwordEditText by lazy { findViewById<EditText>(R.id.password) }
+    private val confirmedPasswordEditText by lazy { findViewById<EditText>(R.id.confirm_password) }
+    private val registerButton by lazy { findViewById<Button>(R.id.saveProfileButton) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-
-        initializeSpinner()
-
-        //signUp button click listener
-        val signUpButton = findViewById<Button>(R.id.btn_sign_up)
-        signUpButton.setOnClickListener {
-            signUp()
-        }
+        registerButton.setOnClickListener { registerUser() }
     }
 
-    private fun signUp() {
-        val name = findViewById<EditText>(R.id.et_name_sign_up)
-        val surName = findViewById<EditText>(R.id.et_surname_sign_up)
-        val birthDate = findViewById<EditText>(R.id.et_birth_date_sign_up)
-        val email = findViewById<EditText>(R.id.et_email_sign_up)
-        val password = findViewById<EditText>(R.id.et_pass_sign_up)
-        val passwordConfirmation = findViewById<EditText>(R.id.et_cpass_sign_up)
-        val height = findViewById<EditText>(R.id.et_height_sign_up)
-        val weight = findViewById<EditText>(R.id.et_weight_sign_up)
+    private fun registerUser() {
+        val userCredentials = UserCredentials(
+            username = usernameEditText.text.toString(),
+            email = emailEditText.text.toString(),
+            password = passwordEditText.text.toString(),
+            confirmedPassword = confirmedPasswordEditText.text.toString()
+        )
+
         val errors = ValidationError<Any?>()
-
-        val isInputDataValid = SingUpLogic().signUpInputTextValidation(
-            name.text.toString(),
-            surName.text.toString(),
-            birthDate.text.toString(),
-            email.text.toString(),
-            password.text.toString(),
-            passwordConfirmation.text.toString(),
-            height.text.toString(),
-            weight.text.toString(), errors)
-
-        if (isInputDataValid) {
-            setContentView(R.layout.index_layout)
+        if (userCredentialsValidator.validate(userCredentials, errors)) {
+            performNetworkRequest(userCredentials)
         } else {
-            //Name errors
-            if (errors.getErrors("name") != null) {
-                name.error = resources.getString(R.string.invalid_name)
+            addUsernameError(errors)
+            addEmailErrors(errors)
+            addPasswordErrors(errors)
+        }
+    }
+
+    private fun performNetworkRequest(userCredentials: UserCredentials) {
+        val client = OkHttpClient()
+        val body = MultipartBody.Builder().setType(MultipartBody.FORM)
+            .apply {
+                addFormDataPart("username", userCredentials.username)
+                addFormDataPart("email", userCredentials.email)
+                addFormDataPart("password", userCredentials.password)
+            }
+            .build()
+        val request = Request.Builder()
+            .url("http://10.0.2.2:5000/sign_up?lang=en")
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread { Toast.makeText(this@SignUpActivity, "Network error", Toast.LENGTH_SHORT).show() }
             }
 
-            //Surname errors
-            if (errors.getErrors("surName") != null) {
-                surName.error = resources.getString(R.string.invalid_surname)
-            }
+            override fun onResponse(call: Call, response: Response) {
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        authenticationManager.retrieveAutToken(userCredentials, object:  AuthTokenCallback {
+                            @RequiresApi(Build.VERSION_CODES.O)
+                            override fun onSuccess(authTokenResponse: AuthTokenResponse) {
+                                runOnUiThread {
+                                    authenticationManager.saveTokenToPreferences(authTokenResponse, this@SignUpActivity)
+                                }
+                            }
 
-            //Birth date errors
-            if (errors.getErrors("birthDate") != null) {
-                if (errors.getErrors("birthDate") == SignUpErrors.EMPTY_FIELD) {
-                    birthDate.error = resources.getString(R.string.invalid_birth_date)
-                }
-                else {
-                    birthDate.error = resources.getString(R.string.invalid_format_birth_date)
-                }
-            }
+                            override fun onError(errorMessage: String) {
+                                runOnUiThread {
+                                    Toast.makeText(this@SignUpActivity, errorMessage, Toast.LENGTH_LONG).show()
+                                }
+                            }
+                        })
 
-            //Email errors
-            if (errors.getErrors("email") != null) {
-                if (errors.getErrors("email") == SignUpErrors.EMPTY_FIELD) {
-                    email.error = resources.getString(R.string.invalid_email)
-                } else {
-                    email.error = resources.getString(R.string.invalid_format_email)
-                }
-            }
-
-            //Password errors
-            if (errors.getErrors("password") != null) {
-                if (errors.getErrors("password") == SignUpErrors.EMPTY_FIELD) {
-                    password.error = resources.getString(R.string.invalid_pass)
-                }
-                else {
-                    password.error = resources.getString(R.string.weak_pass)
+                        val intent = Intent(this@SignUpActivity, UserDataActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        mapRestServiceErrors(response)
+                    }
                 }
             }
+        })
+    }
 
-            //Password errors
-            if (errors.getErrors("passwordConfirmation") != null) {
-                passwordConfirmation.error = resources.getString(R.string.pass_dont_match)
+    private fun mapRestServiceErrors(response: Response) {
+        if (response.code == 400) {
+            val responseBody = response.body?.string() ?: throw IOException("Empty response body")
+            val gson = Gson()
+            val type = object : TypeToken<SignUpResponse>() {}.type
+            val signUpResponse: SignUpResponse = gson.fromJson(responseBody, type)
+
+            if (signUpResponse.errors?.username?.firstOrNull() != null) {
+                val usernameError = signUpResponse.errors.username.firstOrNull()
+                usernameEditText.error = usernameError
+            }
+            if (signUpResponse.errors?.email?.firstOrNull() != null) {
+                val emailError = signUpResponse.errors.email.firstOrNull()
+                emailEditText.error = emailError
             }
 
-            //Weight errors
-            if (errors.getErrors("weight") != null) {
-                if (errors.getErrors("weight") == SignUpErrors.EMPTY_FIELD) {
-                    weight.error = resources.getString(R.string.invalid_weight)
-                }
-                else {
-                    weight.error = resources.getString(R.string.invalid_format_weight)
-                }
-            }
+            Toast.makeText(
+                this@SignUpActivity,
+                "Error registering: Bad Request",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            Toast.makeText(
+                this@SignUpActivity,
+                "Error registering: ${response.message}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 
-            //height errors
-            if (errors.getErrors("height") != null) {
-                if (errors.getErrors("height") == SignUpErrors.EMPTY_FIELD) {
-                    height.error = resources.getString(R.string.invalid_height)
+    private fun addPasswordErrors(errors: ValidationError<Any?>) {
+        if (errors.getErrors("password") != null) {
+            when (errors.getErrors("password")) {
+                AuthenticationErrors.EMPTY_FIELD -> {
+                    passwordEditText.error = resources.getString(R.string.invalid_pass)
                 }
-                else {
-                    height.error = resources.getString(R.string.invalid_format_height)
+                AuthenticationErrors.NOT_VALID_FIELD -> {
+                    passwordEditText.error = resources.getString(R.string.weak_pass)
+                }
+                AuthenticationErrors.PASSWORDS_NOT_MATCH -> {
+                    confirmedPasswordEditText.error = resources.getString(R.string.pass_dont_match)
                 }
             }
         }
-
     }
 
-    private fun initializeSpinner() {
-        val spinner = findViewById<Spinner>(R.id.spinner_activity_level_sign_up)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,
-                        resources.getStringArray(R.array.activity_level_options))
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
+    private fun addEmailErrors(errors: ValidationError<Any?>) {
+        if (errors.getErrors("email") != null) {
+            when (errors.getErrors("email")) {
+                AuthenticationErrors.EMPTY_FIELD -> {
+                    emailEditText.error = resources.getString(R.string.invalid_email)
+                }
+                AuthenticationErrors.NOT_VALID_FIELD -> {
+                    emailEditText.error = resources.getString(R.string.invalid_format_email)
+                }
+            }
+        }
+    }
+
+    private fun addUsernameError(errors: ValidationError<Any?>) {
+        if (errors.getErrors("username") != null) {
+            when (errors.getErrors("username")) {
+                AuthenticationErrors.EMPTY_FIELD -> {
+                    usernameEditText.error = resources.getString(R.string.invalid_email)
+                }
+            }
+        }
     }
 }
