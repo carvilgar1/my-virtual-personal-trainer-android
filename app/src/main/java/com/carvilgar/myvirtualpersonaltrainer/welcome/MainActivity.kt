@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.carvilgar.myvirtualpersonaltrainer.R
 import com.carvilgar.myvirtualpersonaltrainer.sign_in.SignInActivity
+import com.carvilgar.myvirtualpersonaltrainer.sign_up.RegisterActivity
 import com.carvilgar.myvirtualpersonaltrainer.sign_up.SignUpActivity
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.welcome_sign_in_button)
         button.setOnClickListener{
-            val intent = Intent(this, SignInActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
